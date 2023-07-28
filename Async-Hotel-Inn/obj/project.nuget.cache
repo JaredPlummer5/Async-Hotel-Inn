@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KuxQHHPKtu0fG8JleprTTMFftcjO/oCo50MFVrp2RI4VktDBjFsF7W5vgdgUUe02+gk4KfXx36DPaj2QYU/H7A==",
+  "dgSpecHash": "Vu2kn44k1vVNRKp7LaEr2ForiVYv/9l0PWoqJfjprpAKcvCpPxzuxGwqWYf2Dp8lTs/ujSldzhpa7+f9kLwAqw==",
   "success": true,
-  "projectFilePath": "/Users/jaredplummer/projects/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/Async-Hotel-Inn.csproj",
+  "projectFilePath": "/Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/Async-Hotel-Inn.csproj",
   "expectedPackageFiles": [
     "/Users/jaredplummer/.nuget/packages/azure.core/1.24.0/azure.core.1.24.0.nupkg.sha512",
     "/Users/jaredplummer/.nuget/packages/azure.identity/1.6.0/azure.identity.1.6.0.nupkg.sha512",
