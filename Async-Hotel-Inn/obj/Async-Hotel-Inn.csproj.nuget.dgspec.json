@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jaredplummer/projects/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/Async-Hotel-Inn.csproj": {}
+    "/Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/Async-Hotel-Inn.csproj": {}
   },
   "projects": {
-    "/Users/jaredplummer/projects/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/Async-Hotel-Inn.csproj": {
+    "/Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/Async-Hotel-Inn.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jaredplummer/projects/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/Async-Hotel-Inn.csproj",
+        "projectUniqueName": "/Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/Async-Hotel-Inn.csproj",
         "projectName": "Async-Hotel-Inn",
-        "projectPath": "/Users/jaredplummer/projects/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/Async-Hotel-Inn.csproj",
+        "projectPath": "/Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/Async-Hotel-Inn.csproj",
         "packagesPath": "/Users/jaredplummer/.nuget/packages/",
-        "outputPath": "/Users/jaredplummer/projects/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/",
+        "outputPath": "/Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/jaredplummer/.nuget/NuGet/NuGet.Config"

@@ -63,5 +63,4 @@
 
 This ERD structure ensures normalization of the database and maintains the relationships between different tables efficiently. It can be expanded or modified as per future requirements.
 
-![EDR Diagram](Async-Inn-Hotel-Management-System/IMG_0718.png)
-
+![EDR Diagram](IMG_07182.png)
