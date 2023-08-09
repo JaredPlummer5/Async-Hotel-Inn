@@ -10,6 +10,8 @@ namespace Async_Hotel_Inn.Models
         public string Name { get; set; }
 		[Key]
 		public int ID { get; set; }
+
+		public List<RoomAmenity>? RoomAmenities { get; set; }
 	}
 }
 

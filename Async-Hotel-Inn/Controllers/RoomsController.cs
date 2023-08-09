@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Async_Hotel_Inn.Data;
 using Async_Inn_Hotel_Management_System.Models;
+using Async_Hotel_Inn.Models;
 
 namespace Async_Hotel_Inn.Controllers
 {
@@ -29,7 +30,8 @@ namespace Async_Hotel_Inn.Controllers
           {
               return NotFound();
           }
-            return await _context.Rooms.ToListAsync();
+            return await _context.Rooms.Include(room => room.HotelRooms).ThenInclude(hotelRoom => hotelRoom.Hotel).Include(room => room.RoomAmenities)
+                          .ThenInclude(roomAmenities => roomAmenities.Amenity).ToListAsync();
         }
 
         // GET: api/Rooms/5
@@ -91,11 +93,51 @@ namespace Async_Hotel_Inn.Controllers
               return Problem("Entity set 'AsyncInnContext.Rooms'  is null.");
           }
             _context.Rooms.Add(room);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(); 
 
             return CreatedAtAction("GetRoom", new { id = room.ID }, room);
         }
 
+        [HttpPost]
+        [Route("{roomId}/Amenity/{amenityId}")]
+        public async Task<IActionResult> PostAmenityToRoom(int roomID, int amenityID)
+        {
+            if (_context.RoomAmenities == null)
+            {
+                return Problem("Entity set 'AsyncInnContext.Amenities'  is null.");
+            }
+
+
+            var amenity = await _context.Amenitites.FindAsync(amenityID);
+            if (amenity == null)
+            {
+                return Problem("No amenity with that ID exists");
+            }
+
+            var room = await _context.Rooms.FindAsync(roomID);
+            if (room == null)
+            {
+                return Problem("No room with that ID exists");
+            }
+
+            RoomAmenity newRoomAmenity = new RoomAmenity();
+            try
+            {
+                newRoomAmenity = _context.RoomAmenities.Add(new RoomAmenity { AmenityID = amenityID, RoomId = roomID }).Entity;
+            }
+            catch (Exception e)
+            {
+                // Handle exception as needed
+            }
+            finally
+            {
+                await _context.SaveChangesAsync();
+            }
+
+            return CreatedAtAction("PostAmenityToRoom", newRoomAmenity.ID, newRoomAmenity);
+
+
+        }
         // DELETE: api/Rooms/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRoom(int id)
@@ -114,6 +156,45 @@ namespace Async_Hotel_Inn.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpDelete]
+        [Route("{roomId}/Amenity/{amenityId}")]
+        public async Task<IActionResult> DeleteRoom(int amenityID, int roomID)
+        {
+            if (_context.RoomAmenities == null)
+            {
+                return Problem("Enity set 'AsyncInnContext.Amenity'  is null.");
+            }
+
+            var amenity = _context.Amenitites.FindAsync(amenityID);
+            if (amenity == null)
+            {
+                return Problem("No amenity with that ID Exists");
+            }
+            var room = _context.Rooms.FindAsync(roomID);
+            if (room == null)
+            {
+                return Problem("No room with that ID exits");
+
+            }
+
+            try
+            {
+                RoomAmenity oldRA = await _context.RoomAmenities.FindAsync(new { AmenityID = amenityID, RoomID = roomID });
+                _context.RoomAmenities.Remove(oldRA);
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                await _context.SaveChangesAsync();
+            }
+            return Ok();
+
         }
 
         private bool RoomExists(int id)

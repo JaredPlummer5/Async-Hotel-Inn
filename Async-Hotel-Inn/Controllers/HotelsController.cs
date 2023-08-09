@@ -90,6 +90,21 @@ namespace Async_Hotel_Inn.Controllers
             return NoContent();
         }
 
+        [HttpGet]
+        [Route("/api/Hotels/{hotelId}/Rooms")]
+        public async Task<ActionResult<IEnumerable<HotelRoom>>> GetAllRoomsForHotelAsync(int hotelId)
+        {
+            if (hotelId == 0)
+            {
+                return NotFound();
+            }
+            var hotelRoom = await _context.HotelRooms.Where(hr => hr.HotelID == hotelId).ToListAsync();
+
+            return hotelRoom;
+            /* List<HotelRoom> rooms = await _context.HotelRooms.Where(hr => hr.HotelID == hotelId).ToListAsync();
+             return Ok(rooms);*/
+        }
+
         private bool HotelClassExists(int id)
         {
             return _hotel.HotelClassExists(id);

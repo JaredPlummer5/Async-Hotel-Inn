@@ -44,7 +44,29 @@ namespace Async_Hotel_Inn.Data
             modelBuilder.Entity<HotelRoom>().HasData(new HotelRoom
             { ID = 1, HotelID = 1, Name = "Jared's Hotel", RoomID = 1, Price = 120.99 });
 
-            //base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Room>().HasData(new Room
+            { ID = 2, Layout = 0, Name = "Basic Room" });
+
+            modelBuilder.Entity<HotelClass>().HasData(new HotelClass
+            {
+                ID = 2,
+                Address = "13 Sesamljkhe St",
+                City = "Mej2jmphis",
+                State = "TN",
+                Name = "Memphis Inn",
+                PhoneNumber = "901-222-2222"
+            });
+
+            modelBuilder.Entity<Amenity>().HasData(new Amenity
+            { ID = 2, Name = "A/C" });
+
+            // Reference Tables
+            modelBuilder.Entity<RoomAmenity>().HasData(new RoomAmenity
+            { ID = 2, AmenityID = 2, RoomId = 2 });
+            modelBuilder.Entity<HotelRoom>().HasData(new HotelRoom
+            { ID = 2, HotelID = 2, Name = "Jared's Hotel", RoomID = 2, Price = 120.99 });
+            //base.OnModelCreating(modelBuilder)
         }
     }
 }
