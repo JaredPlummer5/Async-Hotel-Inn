@@ -19,6 +19,10 @@ namespace Async_Inn_Hotel_Management_System.Models
         [Required]
 
         public int RoomID { get; set; }
+
+        public HotelClass? Hotel { get; set; }
+
+        public Room? Room { get; set; }
     }
 }
 

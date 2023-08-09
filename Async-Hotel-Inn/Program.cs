@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Async_Hotel_Inn.Data;
 using Async_Hotel_Inn.Models.Interfaces;
 using Async_Hotel_Inn.Models.Services;
@@ -11,12 +13,16 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddControllersWithViews();
+        builder.Services.AddControllersWithViews().AddJsonOptions(options => {
+            options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+            options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+        });
 
         builder.Services.AddDbContext<AsyncInnContext>(options =>
             options.UseSqlServer(
                 builder.Configuration
-                .GetConnectionString("DefaultConnection")));
+                .GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped);
         builder.Services.AddTransient<IHotel, HotelService>();
         var app = builder.Build();
 
