@@ -13,6 +13,7 @@ namespace Async_Hotel_Inn.Data
         public DbSet<Room> Rooms { get; set; }
         public DbSet<HotelRoom> HotelRooms { get; set; }
         public DbSet<HotelClass> Hotels { get; set; }
+        public DbSet<ApplicationUser> Users { get; set; }
 
         public AsyncInnContext(DbContextOptions options) : base(options)
         {

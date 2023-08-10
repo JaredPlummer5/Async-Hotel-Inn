@@ -25,19 +25,13 @@ namespace Lab12.Controllers
     // ROUTES
 
     [HttpPost("Register")]
-    public async Task<ActionResult<ApplicationUser>> Register(ApplicationUser data)
+    public async Task<ActionResult<ApplicationUser>> Register(ApplicationUser user)
     {
       // Note: data (RegisterUser) comes from an inbound DTO/Model created for this purpose
       // this.ModelState?  This comes from MVC Binding and shares an interface with the Model
       //var user = await userService.Register(data, this.ModelState);
-      var user = new ApplicationUser
-      {
-        UserName = data.UserName,
-        Email = data.Email,
-        PhoneNumber = data.PhoneNumber
-      };
 
-      var result = await userManager.CreateAsync(user, data.Password);
+      var result = await userManager.CreateAsync(user, user.Password);
 
       if (result.Succeeded)
       {
@@ -52,9 +46,9 @@ namespace Lab12.Controllers
       foreach (var error in result.Errors)
       {
         var errorKey =
-            error.Code.Contains("Password") ? nameof(data.Password) :
-            error.Code.Contains("Email") ? nameof(data.Email) :
-            error.Code.Contains("UserName") ? nameof(data.UserName) :
+            error.Code.Contains("Password") ? nameof(user.Password) :
+            error.Code.Contains("Email") ? nameof(user.Email) :
+            error.Code.Contains("UserName") ? nameof(user.UserName) :
             "";
         ModelState.AddModelError(errorKey, error.Description);
       }
@@ -73,7 +67,7 @@ namespace Lab12.Controllers
     public async Task<ActionResult<ApplicationUser>> Login(ApplicationUser data)
     {
       
-      var user = await userManager.FindByNameAsync(data.Username);
+      var user = await userManager.FindByNameAsync(data.UserName);
 
       if (await userManager.CheckPasswordAsync(user, data.Password))
       {
@@ -81,7 +75,7 @@ namespace Lab12.Controllers
         return new ApplicationUser()
         {
           Id = user.Id,
-          Username = user.UserName,
+         
         };
       }
       if (user == null)
@@ -89,7 +83,7 @@ namespace Lab12.Controllers
         return Unauthorized();
       }
 
-      return user;
+      return BadRequest();
     }
 
   }
