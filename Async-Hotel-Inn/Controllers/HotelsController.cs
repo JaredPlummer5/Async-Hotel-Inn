@@ -105,6 +105,8 @@ namespace Async_Hotel_Inn.Controllers
              return Ok(rooms);*/
         }
 
+ 
+
         private bool HotelClassExists(int id)
         {
             return _hotel.HotelClassExists(id);
