@@ -21,6 +21,8 @@ namespace Async_Hotel_Inn.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            base.OnModelCreating(modelBuilder);
             //Information tables
             modelBuilder.Entity<Room>().HasData(new Room
             { ID = 1, Layout = 0, Name = "Basic Room" });

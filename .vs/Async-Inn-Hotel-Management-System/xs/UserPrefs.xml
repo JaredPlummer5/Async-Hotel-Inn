@@ -1,25 +1,32 @@
 ﻿<Properties StartupConfiguration="{F223086F-7B3F-48FA-B219-30D2036D9225}|https">
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Async-Hotel-Inn/Controllers/RoomsController.cs">
+  <MonoDevelop.Ide.ItemProperties.Async-Hotel-Inn PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Async-Hotel-Inn/Program.cs">
     <Files>
-      <File FileName="Async-Hotel-Inn/Data/AsyncInnContext.cs" />
-      <File FileName="Async-Hotel-Inn/Controllers/RoomsController.cs" Line="98" Column="47" />
-      <File FileName="Async-Hotel-Inn/Controllers/AmenityController.cs" />
-      <File FileName="Async-Hotel-Inn/Models/RoomAmenity.cs" />
-      <File FileName="Async-Hotel-Inn/Program.cs" Line="7" Column="1" />
-      <File FileName="Async-Hotel-Inn/Models/Amenity.cs" />
-      <File FileName="Async-Hotel-Inn/Models/HotelRoom.cs" />
-      <File FileName="Async-Hotel-Inn/appsettings.json" Line="15" Column="1" />
+      <File FileName="Async-Hotel-Inn/Data/AsyncInnContext.cs" Line="33" Column="30" />
+      <File FileName="Async-Hotel-Inn/Controllers/HotelRoomController.cs" Line="15" Column="27" />
+      <File FileName="Async-Hotel-Inn/Controllers/HotelsController.cs" Line="108" Column="1" />
+      <File FileName="Async-Hotel-Inn/Controllers/RoomsController.cs" Line="1" Column="1" />
+      <File FileName="Async-Hotel-Inn/Models/HotelRoom.cs" Line="6" Column="15" />
+      <File FileName="Async-Hotel-Inn/Models/Amenity.cs" Line="9" Column="16" />
+      <File FileName="Async-Hotel-Inn/Models/Room.cs" Line="1" Column="1" />
+      <File FileName="Async-Hotel-Inn/Models/RoomAmenity.cs" Line="1" Column="1" />
+      <File FileName="Async-Hotel-Inn/Controllers/AmenityController.cs" Line="1" Column="1" />
+      <File FileName="Async-Hotel-Inn/Program.cs" Line="54" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Async-Inn-Hotel-Management-System" expanded="True">
+          <Node name="Async-Inn-Hotel-Management-System" expanded="True" selected="True">
             <Node name="Async-Hotel-Inn">
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" expanded="True" />
+              </Node>
               <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
             </Node>
@@ -28,6 +35,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Async-Hotel-Inn PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

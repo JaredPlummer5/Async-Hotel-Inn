@@ -9,7 +9,7 @@ namespace Async_Inn_Hotel_Management_System.Models
         public int ID { get; set; }
         [Required]
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
         [Required]
 
         public int HotelID { get; set; }
