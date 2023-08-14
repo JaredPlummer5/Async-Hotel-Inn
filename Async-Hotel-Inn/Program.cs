@@ -63,7 +63,7 @@ public class Program
 
         app.UseSwaggerUI(options =>
         {
-            options.SwaggerEndpoint("/api/v1/swagger.json", "Student Demo");
+            options.SwaggerEndpoint("/api/v1/swagger.json", "Async Inn Hotel");
             options.RoutePrefix = "docs";
         });
 
