@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "tiybhErG+yaJT+BesSvu6TxurOqJoSTPD3mNTN4F+wwG/ZuQpp6j51LTr18+b2ojqUpNgv944PFYXB4kTO/ONw==",
+  "dgSpecHash": "hlc4ILWs/fXgJ+ETUALjU27mMr4QaCPtK/9l3SwHnUlqoPeVgUfcClMY4TbtheeYZDanl9/PhKZlkHn5qrja6A==",
   "success": true,
   "projectFilePath": "/Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/Async-Hotel-Inn.csproj",
   "expectedPackageFiles": [
@@ -56,6 +56,7 @@
     "/Users/jaredplummer/.nuget/packages/humanizer.core.zh-cn/2.14.1/humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "/Users/jaredplummer/.nuget/packages/humanizer.core.zh-hans/2.14.1/humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "/Users/jaredplummer/.nuget/packages/humanizer.core.zh-hant/2.14.1/humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "/Users/jaredplummer/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/7.0.10/microsoft.aspnetcore.authentication.jwtbearer.7.0.10.nupkg.sha512",
     "/Users/jaredplummer/.nuget/packages/microsoft.aspnetcore.cryptography.internal/7.0.9/microsoft.aspnetcore.cryptography.internal.7.0.9.nupkg.sha512",
     "/Users/jaredplummer/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/7.0.9/microsoft.aspnetcore.cryptography.keyderivation.7.0.9.nupkg.sha512",
     "/Users/jaredplummer/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/7.0.9/microsoft.aspnetcore.identity.entityframeworkcore.7.0.9.nupkg.sha512",
