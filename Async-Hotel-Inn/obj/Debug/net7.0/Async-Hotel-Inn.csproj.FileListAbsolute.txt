@@ -561,3 +561,4 @@
 /Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/bin/Debug/net7.0/Microsoft.Extensions.Identity.Core.dll
 /Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/bin/Debug/net7.0/Microsoft.Extensions.Identity.Stores.dll
 /Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+/Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
