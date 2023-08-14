@@ -41,7 +41,7 @@ public class Program
         builder.Services.AddDbContext<AsyncInnContext>(options =>
             options.UseSqlServer(
                 builder.Configuration
-                .GetConnectionString("DefaultConnection")), ServiceLifetime.Scoped);
+                .GetConnectionString("DefaultConnention")), ServiceLifetime.Scoped);
         builder.Services.AddTransient<IHotel, HotelService>();
 
 

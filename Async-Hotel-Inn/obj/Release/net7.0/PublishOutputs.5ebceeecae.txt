@@ -7,6 +7,9 @@
 /Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Azure.Core.dll
 /Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Azure.Identity.dll
 /Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Humanizer.dll
+/Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Microsoft.AspNetCore.Cryptography.Internal.dll
+/Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 /Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Microsoft.AspNetCore.Razor.Language.dll
 /Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Microsoft.Build.dll
@@ -31,6 +34,9 @@
 /Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Microsoft.EntityFrameworkCore.Sqlite.dll
 /Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Microsoft.EntityFrameworkCore.SqlServer.dll
 /Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Microsoft.Extensions.DependencyModel.dll
+/Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Microsoft.Extensions.Identity.Core.dll
+/Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Microsoft.Extensions.Identity.Stores.dll
+/Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Microsoft.Extensions.Options.dll
 /Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Microsoft.Identity.Client.dll
 /Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Microsoft.Identity.Client.Extensions.Msal.dll
 /Users/jaredplummer/projects/courses/CodeCrew/Async-Inn-Hotel-Management-System/Async-Hotel-Inn/obj/Release/net7.0/PubTmp/Out/Microsoft.IdentityModel.Abstractions.dll
