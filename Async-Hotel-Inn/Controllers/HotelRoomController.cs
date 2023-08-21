@@ -72,6 +72,12 @@ namespace Async_Hotel_Inn.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutHotelRoom(int id, HotelRoom hotelRoom)
         {
+
+            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com") || !(HttpContext.Request.Headers["UserEmail"] == "agent@gmail.com"))
+            {
+                return NoContent();
+            }
+
             if (id != hotelRoom.ID)
             {
                 return BadRequest();

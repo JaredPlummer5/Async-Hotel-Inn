@@ -63,7 +63,6 @@ namespace Async_Hotel_Inn.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("EmailConfirmed")
@@ -89,16 +88,12 @@ namespace Async_Hotel_Inn.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Token")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -282,6 +277,111 @@ namespace Async_Hotel_Inn.Migrations
                             Layout = 0,
                             Name = "Basic Room"
                         });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdentityRole");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "admin",
+                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "editor",
+                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
+                            Name = "Editor",
+                            NormalizedName = "EDITOR"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdentityRoleClaim<string>");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 6,
+                            ClaimType = "permissions",
+                            ClaimValue = "create",
+                            RoleId = "admin"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ClaimType = "permissions",
+                            ClaimValue = "update",
+                            RoleId = "admin"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ClaimType = "permissions",
+                            ClaimValue = "delete",
+                            RoleId = "admin"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ClaimType = "permissions",
+                            ClaimValue = "create",
+                            RoleId = "editor"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ClaimType = "permissions",
+                            ClaimValue = "update",
+                            RoleId = "editor"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Async_Hotel_Inn.Models.RoomAmenity", b =>

@@ -15,6 +15,7 @@ namespace Async_Hotel_Inn.Data
         public DbSet<HotelRoom> HotelRooms { get; set; }
         public DbSet<HotelClass> Hotels { get; set; }
         public DbSet<ApplicationUser> Users { get; set; }
+        //public DbSet<IdentityUserRole<string>> Roles { get; set; }
 
         public AsyncInnContext(DbContextOptions options) : base(options)
         {
@@ -70,12 +71,11 @@ namespace Async_Hotel_Inn.Data
             { ID = 2, AmenityID = 2, RoomId = 2 });
             modelBuilder.Entity<HotelRoom>().HasData(new HotelRoom
             { ID = 2, HotelID = 2, Name = "Jared's Hotel", RoomID = 2, Price = 120.99 });
-            base.OnModelCreating(modelBuilder);
+            // base.OnModelCreating(modelBuilder);
 
-
+            modelBuilder.Entity<IdentityUserRole<string>>().HasNoKey();
             //Adding Roles 
-            SeedRole(modelBuilder,"Admin", "create", "update", "delete");
-            SeedRole(modelBuilder, "Editor", "create", "update");
+            
         }
 
 

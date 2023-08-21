@@ -102,6 +102,12 @@ namespace Async_Hotel_Inn.Controllers
         [Route("{roomId}/Amenity/{amenityId}")]
         public async Task<IActionResult> PostAmenityToRoom(int roomID, int amenityID)
         {
+            if (!(HttpContext.Request.Headers["UserEmail"].ToString().Split("AG")[0] == "AD") || !(HttpContext.Request.Headers["UserEmail"].ToString().Split("AG")[0] == "AG"))
+            {
+                return NoContent();
+            }
+
+
             if (_context.RoomAmenities == null)
             {
                 return Problem("Entity set 'AsyncInnContext.Amenities'  is null.");
@@ -162,6 +168,11 @@ namespace Async_Hotel_Inn.Controllers
         [Route("{roomId}/Amenity/{amenityId}")]
         public async Task<IActionResult> DeleteRoom(int amenityID, int roomID)
         {
+
+            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com") || !(HttpContext.Request.Headers["UserEmail"] == "agent@gmail.com"))
+            {
+                return NoContent();
+            }
             if (_context.RoomAmenities == null)
             {
                 return Problem("Enity set 'AsyncInnContext.Amenity'  is null.");

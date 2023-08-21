@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Async_Hotel_Inn.Data;
 using Async_Inn_Hotel_Management_System.Models;
 using Async_Hotel_Inn.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Async_Hotel_Inn.Controllers
 {
@@ -26,8 +27,10 @@ namespace Async_Hotel_Inn.Controllers
 
         // GET: api/Hotels
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<HotelClass>>> GetHotels()
         {
+          
 
             return await _hotel.GetHotels();
         }
@@ -37,19 +40,12 @@ namespace Async_Hotel_Inn.Controllers
         public async Task<ActionResult<HotelClass>> GetHotelClass(int id)
         {
 
+            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com"))
+            {
+                return new HotelClass();
+            }
             return await _hotel.GetHotelClass(id);
-          //if (_context.Hotels == null)
-          //{
-          //    return NotFound();
-          //}
-          //  var hotelClass = await _context.Hotels.FindAsync(id);
-
-          //  if (hotelClass == null)
-          //  {
-          //      return NotFound();
-          //  }
-
-          //  return hotelClass;
+        
         }
 
         // PUT: api/Hotels/5
@@ -57,6 +53,11 @@ namespace Async_Hotel_Inn.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutHotelClass(int id, HotelClass hotelClass)
         {
+            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com") || !(HttpContext.Request.Headers["UserEmail"] == "propertyManger@gmail.com"))
+            {
+                return NoContent();
+            }
+
             if (id != hotelClass.ID)
             {
                 return BadRequest();
@@ -72,7 +73,13 @@ namespace Async_Hotel_Inn.Controllers
         [HttpPost]
         public async Task<ActionResult<HotelClass>> PostHotelClass(HotelClass hotelClass)
         {
-          if (_context.Hotels == null)
+
+            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com") || !(HttpContext.Request.Headers["UserEmail"] == "propertyManger@gmail.com"))
+            {
+                return NoContent();
+            }
+
+            if (_context.Hotels == null)
           {
               return Problem("Entity set 'AsyncInnContext.Hotels'  is null.");
           }
@@ -85,15 +92,28 @@ namespace Async_Hotel_Inn.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHotelClass(int id)
         {
+
+            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com"))
+            {
+                return NoContent();
+            }
+
             _hotel.DeleteHotelClass(id);
          
             return NoContent();
         }
 
         [HttpGet]
+        //[Authorize(Policy="Email")]
+        [AllowAnonymous]
         [Route("/api/Hotels/{hotelId}/Rooms")]
         public async Task<ActionResult<IEnumerable<HotelRoom>>> GetAllRoomsForHotelAsync(int hotelId)
         {
+            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com") || !(HttpContext.Request.Headers["UserEmail"] == "propertyManger@gmail.com"))
+            {
+                return new List<HotelRoom>();
+            }
+
             if (hotelId == 0)
             {
                 return NotFound();
