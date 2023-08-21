@@ -1,15 +1,10 @@
 using Async_Hotel_Inn.Models;
-using Async_Hotel_Inn.Models.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+
 using System.Security.Claims;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace Lab12.Controllers
 {
@@ -19,13 +14,13 @@ namespace Lab12.Controllers
     {
 
         private UserManager<ApplicationUser> userManager;
-        private JwtTokenService tokenService;
+ 
 
-        public UsersController(UserManager<ApplicationUser> manager, JwtTokenService _tokenService)
+        public UsersController(UserManager<ApplicationUser> manager)
         {
 
             userManager = manager;
-            tokenService = _tokenService;
+           
         }
 
         // ROUTES
@@ -40,14 +35,14 @@ namespace Lab12.Controllers
             var result = await userManager.CreateAsync(user, user.Password);
             if (result.Succeeded)
             {
-                await userManager.AddToRolesAsync(user, user.Roles);
+                // await userManager.AddToRolesAsync(user, user.Roles);
+                // var name = HttpContext.User.Identity.Name;
 
+                
                 return new ApplicationUser
                 {
                     Id = user.Id,
-                    UserName = user.UserName,
-                    Token = await tokenService.GetToken(user, System.TimeSpan.FromMinutes(15)),
-                    Roles = await userManager.GetRolesAsync(user)
+                    UserName = user.UserName
                 };
 
             }
@@ -72,6 +67,56 @@ namespace Lab12.Controllers
 
             return BadRequest(new ValidationProblemDetails(ModelState));
         }
+
+
+        [HttpPost("Create")]
+        public async Task<ActionResult<ApplicationUser>> Create(ApplicationUser user)
+        {
+
+            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com") || !(HttpContext.Request.Headers["UserEmail"] == "propertyManger@gmail.com"))
+            {
+                return NoContent();
+            }
+
+            var result = await userManager.CreateAsync(user, user.Password);
+            if (result.Succeeded)
+            {
+                // await userManager.AddToRolesAsync(user, user.Roles);
+                // var name = HttpContext.User.Identity.Name;
+
+
+                return new ApplicationUser
+                {
+                    Id = user.Id,
+                    UserName = "AG" + user.UserName 
+                };
+
+            }
+
+            foreach (var error in result.Errors)
+            {
+                var errorKey =
+                    error.Code.Contains("Password") ? nameof(user.Password) :
+                    error.Code.Contains("Email") ? nameof(user.Email) :
+                    error.Code.Contains("UserName") ? nameof(user.UserName) :
+                    "";
+                ModelState.AddModelError(errorKey, error.Description);
+            }
+
+
+
+            if (ModelState.IsValid)
+            {
+                return user;
+            }
+
+            return BadRequest(new ValidationProblemDetails(ModelState));
+
+        }
+
+
+
+
 
         [HttpPost("Login")]
         public async Task<ActionResult<ApplicationUser>> Login(ApplicationUser data)
@@ -101,10 +146,13 @@ namespace Lab12.Controllers
         public async Task<ApplicationUser> GetUser(ClaimsPrincipal principal)
         {
             var user = await userManager.GetUserAsync(principal);
+          //  await userManager.AddToRolesAsync(user, user.Roles);
+
             return new ApplicationUser
             {
                 Id = user.Id,
-                UserName = user.UserName
+                UserName = user.UserName,
+                Roles = await userManager.GetRolesAsync(user)
             };
         }
     }
