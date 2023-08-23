@@ -9,8 +9,7 @@ using System.Security.Claims;
 
 namespace Lab12.Controllers
 {
-    [Authorize]
-    [Authorize(AuthenticationSchemes = "Bearer")]
+  
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -88,7 +87,9 @@ namespace Lab12.Controllers
 
 
         
+        [Authorize]
         [Authorize(Policy = "PropertyManager")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpPost]
         [Route("Agent")]
         public async Task<ActionResult<ApplicationUser>> CreateAgent(ApplicationUser user)
