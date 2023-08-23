@@ -4,6 +4,7 @@ using Async_Hotel_Inn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Async_Hotel_Inn.Migrations
 {
     [DbContext(typeof(AsyncInnContext))]
-    partial class AsyncInnContextModelSnapshot : ModelSnapshot
+    [Migration("20230821030537_UpgradeDB")]
+    partial class UpgradeDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -118,59 +121,6 @@ namespace Async_Hotel_Inn.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "DistrictManager-id",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "beaf5803-db04-487b-b0aa-97a1e4f6961f",
-                            Email = "DISTRICTMANAGER@example.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "DISTRICTMANAGER@EXAMPLE.COM",
-                            NormalizedUserName = "DISTRICTMANAGER",
-                            Password = "Password123!",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHLN7sAtWgvdCU3WPDxwOYnlO4R7Gj2uRm7M2Mv/9HQauPbIc6HwEnHu7TDdjvsdmg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "04bf662e-fc4e-451a-9e41-9890ac8dc377",
-                            TwoFactorEnabled = false,
-                            UserName = "DistrictManager"
-                        },
-                        new
-                        {
-                            Id = "PropertyManager-id",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "bd584703-ccc1-41de-8758-5e387606eddb",
-                            Email = "PROPERTYMANAGER@example.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "PROPERTYMANAGER@EXAMPLE.COM",
-                            NormalizedUserName = "PROPERTYMANAGER",
-                            Password = "Password123!",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAo2EEuez0vDN+yX8x0EjjBZMsdAd/mLkudrIAzVygCn9s4czNVJQKgswsTg3RR8ow==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "b2ad3c9e-f660-487e-a3a7-7c5c77b2e1c3",
-                            TwoFactorEnabled = false,
-                            UserName = "PropertyManager"
-                        },
-                        new
-                        {
-                            Id = "Agent-id",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "431d8743-6a92-4951-97cc-2a7b9313e934",
-                            Email = "AGENT@example.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "AGENT@EXAMPLE.COM",
-                            NormalizedUserName = "AGENT",
-                            Password = "Password123!",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKAWdBB+m0wfBNESPyymo1dADo/+ac2mCZdYcZpccZPXA/HDZPNG/sS2YJD7DyyQaw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "65f03ba9-f137-4f1b-9966-64d4cb3841f3",
-                            TwoFactorEnabled = false,
-                            UserName = "Agent"
-                        });
                 });
 
             modelBuilder.Entity("Async_Hotel_Inn.Models.RoomAmenity", b =>
@@ -370,43 +320,6 @@ namespace Async_Hotel_Inn.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "admin",
-                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "editor",
-                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
-                            Name = "Editor",
-                            NormalizedName = "EDITOR"
-                        },
-                        new
-                        {
-                            Id = "districtmanager",
-                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
-                            Name = "DistrictManager",
-                            NormalizedName = "DISTRICTMANAGER"
-                        },
-                        new
-                        {
-                            Id = "propertymanager",
-                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
-                            Name = "PropertyManager",
-                            NormalizedName = "PROPERTYMANAGER"
-                        },
-                        new
-                        {
-                            Id = "agent",
-                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
-                            Name = "Agent",
-                            NormalizedName = "AGENT"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -432,106 +345,6 @@ namespace Async_Hotel_Inn.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1014,
-                            ClaimType = "permissions",
-                            ClaimValue = "create",
-                            RoleId = "admin"
-                        },
-                        new
-                        {
-                            Id = 1015,
-                            ClaimType = "permissions",
-                            ClaimValue = "update",
-                            RoleId = "admin"
-                        },
-                        new
-                        {
-                            Id = 1016,
-                            ClaimType = "permissions",
-                            ClaimValue = "delete",
-                            RoleId = "admin"
-                        },
-                        new
-                        {
-                            Id = 1017,
-                            ClaimType = "permissions",
-                            ClaimValue = "read",
-                            RoleId = "admin"
-                        },
-                        new
-                        {
-                            Id = 1018,
-                            ClaimType = "permissions",
-                            ClaimValue = "create",
-                            RoleId = "editor"
-                        },
-                        new
-                        {
-                            Id = 1019,
-                            ClaimType = "permissions",
-                            ClaimValue = "update",
-                            RoleId = "editor"
-                        },
-                        new
-                        {
-                            Id = 1020,
-                            ClaimType = "permissions",
-                            ClaimValue = "create",
-                            RoleId = "districtmanager"
-                        },
-                        new
-                        {
-                            Id = 1021,
-                            ClaimType = "permissions",
-                            ClaimValue = "update",
-                            RoleId = "districtmanager"
-                        },
-                        new
-                        {
-                            Id = 1022,
-                            ClaimType = "permissions",
-                            ClaimValue = "delete",
-                            RoleId = "districtmanager"
-                        },
-                        new
-                        {
-                            Id = 1023,
-                            ClaimType = "permissions",
-                            ClaimValue = "read",
-                            RoleId = "districtmanager"
-                        },
-                        new
-                        {
-                            Id = 1024,
-                            ClaimType = "permissions",
-                            ClaimValue = "update",
-                            RoleId = "propertymanager"
-                        },
-                        new
-                        {
-                            Id = 1025,
-                            ClaimType = "permissions",
-                            ClaimValue = "read",
-                            RoleId = "propertymanager"
-                        },
-                        new
-                        {
-                            Id = 1026,
-                            ClaimType = "permissions",
-                            ClaimValue = "update",
-                            RoleId = "agent"
-                        },
-                        new
-                        {
-                            Id = 1027,
-                            ClaimType = "permissions",
-                            ClaimValue = "read",
-                            RoleId = "agent"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -594,23 +407,6 @@ namespace Async_Hotel_Inn.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "DistrictManager-id",
-                            RoleId = "DistrictManager"
-                        },
-                        new
-                        {
-                            UserId = "PropertyManager-id",
-                            RoleId = "PropertyManager"
-                        },
-                        new
-                        {
-                            UserId = "Agent-id",
-                            RoleId = "Agent"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

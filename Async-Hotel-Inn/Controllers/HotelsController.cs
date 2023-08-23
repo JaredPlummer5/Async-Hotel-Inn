@@ -14,6 +14,7 @@ namespace Async_Hotel_Inn.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class HotelsController : ControllerBase
     {
         private readonly AsyncInnContext _context;
@@ -37,13 +38,11 @@ namespace Async_Hotel_Inn.Controllers
 
         // GET: api/Hotels/5
         [HttpGet("{id}")]
+        [Authorize(Policy = "DistrictManager")]
         public async Task<ActionResult<HotelClass>> GetHotelClass(int id)
         {
 
-            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com"))
-            {
-                return new HotelClass();
-            }
+           
             return await _hotel.GetHotelClass(id);
         
         }
@@ -51,12 +50,11 @@ namespace Async_Hotel_Inn.Controllers
         // PUT: api/Hotels/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+
+        [Authorize(Roles = "DistrictManager")]
         public async Task<IActionResult> PutHotelClass(int id, HotelClass hotelClass)
         {
-            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com") || !(HttpContext.Request.Headers["UserEmail"] == "propertyManger@gmail.com"))
-            {
-                return NoContent();
-            }
+           
 
             if (id != hotelClass.ID)
             {
@@ -71,13 +69,11 @@ namespace Async_Hotel_Inn.Controllers
         // POST: api/Hotels
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "DistrictManager")]
         public async Task<ActionResult<HotelClass>> PostHotelClass(HotelClass hotelClass)
         {
 
-            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com") || !(HttpContext.Request.Headers["UserEmail"] == "propertyManger@gmail.com"))
-            {
-                return NoContent();
-            }
+        
 
             if (_context.Hotels == null)
           {
@@ -93,10 +89,7 @@ namespace Async_Hotel_Inn.Controllers
         public async Task<IActionResult> DeleteHotelClass(int id)
         {
 
-            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com"))
-            {
-                return NoContent();
-            }
+           
 
             _hotel.DeleteHotelClass(id);
          
@@ -105,14 +98,11 @@ namespace Async_Hotel_Inn.Controllers
 
         [HttpGet]
         //[Authorize(Policy="Email")]
-        [AllowAnonymous]
+        [Authorize(Roles = "DistrictManager,PropertyManager,Agent")]
         [Route("/api/Hotels/{hotelId}/Rooms")]
         public async Task<ActionResult<IEnumerable<HotelRoom>>> GetAllRoomsForHotelAsync(int hotelId)
         {
-            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com") || !(HttpContext.Request.Headers["UserEmail"] == "propertyManger@gmail.com"))
-            {
-                return new List<HotelRoom>();
-            }
+          
 
             if (hotelId == 0)
             {

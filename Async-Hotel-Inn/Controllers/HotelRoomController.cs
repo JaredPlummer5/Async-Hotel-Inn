@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Async_Hotel_Inn.Data;
 using Async_Inn_Hotel_Management_System.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Async_Hotel_Inn.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
     public class HotelRoomController : ControllerBase
     {
         private readonly AsyncInnContext _context;
@@ -23,6 +26,7 @@ namespace Async_Hotel_Inn.Controllers
 
         // GET: api/HotelRoom
         [HttpGet]
+        [Authorize(Policy = "DistrictManager,Agent")]
         [Route("/api/HotelRoom")]
         public async Task<ActionResult<IEnumerable<HotelRoom>>> GetHotelRooms()
         {
@@ -35,6 +39,7 @@ namespace Async_Hotel_Inn.Controllers
 
         //new route to get all routes
         [HttpGet]
+        [Authorize(Roles = "DistrictManager,PropertyManager")]
         [Route("/api/HotelRoom/{hotelId}/Rooms")]
         public async Task<ActionResult<IEnumerable<HotelRoom>>> GetAllRoomsForHotelAsync(int hotelId)
         {
@@ -51,6 +56,8 @@ namespace Async_Hotel_Inn.Controllers
 
         // GET: api/HotelRoom/5
         [HttpGet("{id}")]
+
+        [Authorize(Roles = "DistrictManager")]
         public async Task<ActionResult<HotelRoom>> GetHotelRoom(int id)
         {
             if (_context.HotelRooms == null)
@@ -70,14 +77,9 @@ namespace Async_Hotel_Inn.Controllers
         // PUT: api/HotelRoom/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Policy = "DistrictManager,Agent")]
         public async Task<IActionResult> PutHotelRoom(int id, HotelRoom hotelRoom)
         {
-
-            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com") || !(HttpContext.Request.Headers["UserEmail"] == "agent@gmail.com"))
-            {
-                return NoContent();
-            }
-
             if (id != hotelRoom.ID)
             {
                 return BadRequest();
@@ -107,6 +109,7 @@ namespace Async_Hotel_Inn.Controllers
 
         ///api/Hotels/{hotelId}/Rooms/{roomNumber}
         [HttpPut]
+        [Authorize(Roles = "DistrictManager,PropertyManager")]
         [Route("/api/HotelRoom/{hotelId}/Rooms/{roomId}")]
         public async Task<IActionResult> UpdateHotelRoomInHotel(int hotelId, int roomId, [FromBody] HotelRoom updatedHotelRoom)
         {
@@ -178,6 +181,7 @@ namespace Async_Hotel_Inn.Controllers
 
 
         [HttpDelete]
+        [Authorize(Roles = "DistrictManager")]
         [Route("/api/Hotels/{hotelId}/Rooms/{roomID}")]
         public async Task<IActionResult> DeleteSpecificRoom(int hotelId, int roomID)
         {
@@ -199,6 +203,7 @@ namespace Async_Hotel_Inn.Controllers
         // POST: api/HotelRoom
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "DistrictManager")]
         public async Task<ActionResult<HotelRoom>> PostHotelRoom(HotelRoom hotelRoom)
         {
             if (_context.HotelRooms == null)
@@ -213,6 +218,7 @@ namespace Async_Hotel_Inn.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "DistrictManager,PropertyManager")]
         [Route("/api/HotelRoom/{hotelId}/Rooms")]
         public async Task<ActionResult<HotelRoom>>AddRoomToHotel(int hotelId, [FromQuery] int roomId, [FromBody] HotelRoom hotelRoom)
         {
@@ -241,6 +247,7 @@ namespace Async_Hotel_Inn.Controllers
 
         // DELETE: api/HotelRoom/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "DistrictManager")]
         public async Task<IActionResult> DeleteHotelRoom(int id)
         {
             if (_context.HotelRooms == null)

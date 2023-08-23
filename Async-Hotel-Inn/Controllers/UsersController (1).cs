@@ -1,4 +1,5 @@
 using Async_Hotel_Inn.Models;
+using Async_Hotel_Inn.Models.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,24 +9,30 @@ using System.Security.Claims;
 
 namespace Lab12.Controllers
 {
+    [Authorize]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
 
         private UserManager<ApplicationUser> userManager;
- 
+        private SignInManager<ApplicationUser> signInManager;
+        private JwtTokenService tokenService;
 
-        public UsersController(UserManager<ApplicationUser> manager)
+        public UsersController(UserManager<ApplicationUser> manager, JwtTokenService _tokenService, SignInManager<ApplicationUser> _signInManager)
         {
 
             userManager = manager;
-           
+            tokenService = _tokenService;
+            signInManager = _signInManager;
         }
 
         // ROUTES
 
         [HttpPost("Register")]
+        [AllowAnonymous]
+
         public async Task<ActionResult<ApplicationUser>> Register(ApplicationUser user)
         {
             // Note: data (RegisterUser) comes from an inbound DTO/Model created for this purpose
@@ -38,14 +45,24 @@ namespace Lab12.Controllers
                 // await userManager.AddToRolesAsync(user, user.Roles);
                 // var name = HttpContext.User.Identity.Name;
 
-                
+                List<string> roles = new List<string>
+                {
+                    "Anonymous"
+                };
+                //await userManager.AddToRoleAsync(user, roles.ToString()); // Example role
+                await signInManager.SignInAsync(user, null);
+
                 return new ApplicationUser
                 {
                     Id = user.Id,
-                    UserName = user.UserName
+                    UserName = user.UserName,
+                    Token = await tokenService.GetToken(user, System.TimeSpan.FromMinutes(15)),
+                    Roles = roles
                 };
 
             }
+
+            
 
             // What about our errors?
             foreach (var error in result.Errors)
@@ -69,30 +86,31 @@ namespace Lab12.Controllers
         }
 
 
-        [HttpPost("Create")]
-        public async Task<ActionResult<ApplicationUser>> Create(ApplicationUser user)
+
+        
+        [Authorize(Policy = "PropertyManager")]
+        [HttpPost]
+        [Route("Agent")]
+        public async Task<ActionResult<ApplicationUser>> CreateAgent(ApplicationUser user)
         {
-
-            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com") || !(HttpContext.Request.Headers["UserEmail"] == "propertyManger@gmail.com"))
-            {
-                return NoContent();
-            }
-
+ 
             var result = await userManager.CreateAsync(user, user.Password);
+
             if (result.Succeeded)
             {
-                // await userManager.AddToRolesAsync(user, user.Roles);
-                // var name = HttpContext.User.Identity.Name;
-
+                await userManager.AddToRoleAsync(user, "Agent");
+                //await signInManager.SignInAsync(user, null);
 
                 return new ApplicationUser
                 {
                     Id = user.Id,
-                    UserName = "AG" + user.UserName 
+                    UserName = user.UserName,
+                    Roles = new List<string> { "Agent" },
+                    Token = await tokenService.GetToken(user, System.TimeSpan.FromMinutes(15))
                 };
-
             }
 
+            // Handle errors by adding them to ModelState
             foreach (var error in result.Errors)
             {
                 var errorKey =
@@ -103,22 +121,13 @@ namespace Lab12.Controllers
                 ModelState.AddModelError(errorKey, error.Description);
             }
 
-
-
-            if (ModelState.IsValid)
-            {
-                return user;
-            }
-
             return BadRequest(new ValidationProblemDetails(ModelState));
-
         }
 
 
 
-
-
         [HttpPost("Login")]
+        [AllowAnonymous]
         public async Task<ActionResult<ApplicationUser>> Login(ApplicationUser data)
         {
 
@@ -126,10 +135,13 @@ namespace Lab12.Controllers
 
             if (await userManager.CheckPasswordAsync(user, data.Password))
             {
+                await signInManager.SignInAsync(user,null);
 
                 return new ApplicationUser()
                 {
                     Id = user.Id,
+                    Token = await tokenService.GetToken(user, System.TimeSpan.FromMinutes(15)),
+                    Roles = user.Roles
 
                 };
             }

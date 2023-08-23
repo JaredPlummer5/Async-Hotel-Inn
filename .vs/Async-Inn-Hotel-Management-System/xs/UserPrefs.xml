@@ -1,29 +1,20 @@
 ﻿<Properties StartupConfiguration="{F223086F-7B3F-48FA-B219-30D2036D9225}|https">
-  <MonoDevelop.Ide.ItemProperties.Async-Hotel-Inn PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Async-Hotel-Inn/Models/ApplicationUser.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Async-Hotel-Inn/Controllers/UsersController (1).cs">
     <Files>
-      <File FileName="Async-Hotel-Inn/Data/AsyncInnContext.cs" />
-      <File FileName="Async-Hotel-Inn/Models/Amenity.cs" />
       <File FileName="Async-Hotel-Inn/Program.cs" />
-      <File FileName="README.md" />
-      <File FileName="Async-Hotel-Inn/Models/HotelRoom.cs" />
-      <File FileName="Async-Hotel-Inn/Migrations/AsyncInnContextModelSnapshot.cs" />
-      <File FileName="Async-Hotel-Inn/Models/ApplicationUser.cs" Line="12" Column="22" />
-      <File FileName="Async-Hotel-Inn/Controllers/UsersController (1).cs" />
-      <File FileName="Async-Hotel-Inn/Controllers/HotelRoomController.cs" />
+      <File FileName="Async-Hotel-Inn/Controllers/UsersController (1).cs" Line="99" Column="37" />
+      <File FileName="Async-Hotel-Inn/Models/ApplicationUser.cs" />
+      <File FileName="Async-Hotel-Inn/Data/AsyncInnContext.cs" />
+      <File FileName="Async-Hotel-Inn/Models/RoomAmenity.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Async-Inn-Hotel-Management-System" expanded="True">
             <Node name="Async-Hotel-Inn" expanded="True">
-              <Node name="Data" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="ApplicationUser.cs" selected="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="UsersController (1).cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -31,6 +22,10 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Async-Hotel-Inn PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

@@ -18,5 +18,6 @@ namespace Async_Inn_Hotel_Management_System.Models
         public List<HotelRoom>? HotelRooms { get; set; }
 
         public List<RoomAmenity>? RoomAmenities { get; set; }
+       
     }
 }
