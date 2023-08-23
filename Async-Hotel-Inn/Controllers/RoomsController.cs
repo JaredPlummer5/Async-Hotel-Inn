@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using Async_Hotel_Inn.Data;
 using Async_Inn_Hotel_Management_System.Models;
 using Async_Hotel_Inn.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Async_Hotel_Inn.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class RoomsController : ControllerBase
     {
         private readonly AsyncInnContext _context;
@@ -36,6 +38,7 @@ namespace Async_Hotel_Inn.Controllers
 
         // GET: api/Rooms/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "DistrictManager")]
         public async Task<ActionResult<Room>> GetRoom(int id)
         {
           if (_context.Rooms == null)
@@ -55,6 +58,7 @@ namespace Async_Hotel_Inn.Controllers
         // PUT: api/Rooms/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "DistrictManager")]
         public async Task<IActionResult> PutRoom(int id, Room room)
         {
             if (id != room.ID)
@@ -82,10 +86,61 @@ namespace Async_Hotel_Inn.Controllers
 
             return NoContent();
         }
+        [HttpPut]
+        [Authorize(Roles = "DistrictManager,PropertyManager")]
+        [Route("{roomId}/Amenity/{amenityId}")]
+        public async Task<IActionResult> UpdateRoomAmenities(int roomId, int amenityId, [FromBody] RoomAmenity updateRoomAmenity)
+        {
+            // Check if the room and amenity exist
+            var room = await _context.Rooms.FindAsync(roomId);
+            var amenity = await _context.Amenitites.FindAsync(amenityId);
+
+            if (room == null || amenity == null)
+            {
+                return NotFound();
+            }
+
+            // Check if the amenity already exists for the room
+            var roomAmenity = await _context.RoomAmenities
+                .FirstOrDefaultAsync(ra => ra.RoomId == roomId && ra.AmenityID == amenityId);
+
+            if (roomAmenity == null)
+            {
+                // If the room does not have the amenity, add it
+                roomAmenity = new RoomAmenity
+                {
+                    RoomId = roomId,
+                    AmenityID = amenityId
+                };
+
+                _context.RoomAmenities.Add(roomAmenity);
+            }
+            else
+            {
+                // If the room already has the amenity, you can update any additional properties if needed.
+                // For example: roomAmenity.SomeProperty = someValue;
+                roomAmenity.Amenity = updateRoomAmenity.Amenity;
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw; // Handle the exception as you see fit
+            }
+
+
+            return Ok(room);
+        }
+
+
 
         // POST: api/Rooms
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "DistrictManager")]
         public async Task<ActionResult<Room>> PostRoom(Room room)
         {
           if (_context.Rooms == null)
@@ -99,13 +154,11 @@ namespace Async_Hotel_Inn.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "DistrictManager,PropertyManager")]
         [Route("{roomId}/Amenity/{amenityId}")]
         public async Task<IActionResult> PostAmenityToRoom(int roomID, int amenityID)
         {
-            if (!(HttpContext.Request.Headers["UserEmail"].ToString().Split("AG")[0] == "AD") || !(HttpContext.Request.Headers["UserEmail"].ToString().Split("AG")[0] == "AG"))
-            {
-                return NoContent();
-            }
+          
 
 
             if (_context.RoomAmenities == null)
@@ -146,6 +199,7 @@ namespace Async_Hotel_Inn.Controllers
         }
         // DELETE: api/Rooms/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "DistrictManager")]
         public async Task<IActionResult> DeleteRoom(int id)
         {
             if (_context.Rooms == null)
@@ -165,14 +219,12 @@ namespace Async_Hotel_Inn.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "DistrictManager,Agent")]
         [Route("{roomId}/Amenity/{amenityId}")]
         public async Task<IActionResult> DeleteRoom(int amenityID, int roomID)
         {
 
-            if (!(HttpContext.Request.Headers["UserEmail"] == "jaredplummer19@gmail.com") || !(HttpContext.Request.Headers["UserEmail"] == "agent@gmail.com"))
-            {
-                return NoContent();
-            }
+          
             if (_context.RoomAmenities == null)
             {
                 return Problem("Enity set 'AsyncInnContext.Amenity'  is null.");

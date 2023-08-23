@@ -4,6 +4,7 @@ using Async_Hotel_Inn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Async_Hotel_Inn.Migrations
 {
     [DbContext(typeof(AsyncInnContext))]
-    partial class AsyncInnContextModelSnapshot : ModelSnapshot
+    [Migration("20230822203456_oldAddingRoles")]
+    partial class oldAddingRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,16 +127,16 @@ namespace Async_Hotel_Inn.Migrations
                         {
                             Id = "DistrictManager-id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "beaf5803-db04-487b-b0aa-97a1e4f6961f",
+                            ConcurrencyStamp = "349b55c2-b79b-4740-8d89-9a442ef9505a",
                             Email = "DISTRICTMANAGER@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "DISTRICTMANAGER@EXAMPLE.COM",
                             NormalizedUserName = "DISTRICTMANAGER",
                             Password = "Password123!",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHLN7sAtWgvdCU3WPDxwOYnlO4R7Gj2uRm7M2Mv/9HQauPbIc6HwEnHu7TDdjvsdmg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECQOynrBZHJ6uaHqc5vWIcksuiOUJeeyH2VkeFuGxkKScgErHYWnXknxnU0KataA6Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "04bf662e-fc4e-451a-9e41-9890ac8dc377",
+                            SecurityStamp = "48a321cc-633a-4661-8c4b-97fee5175c5e",
                             TwoFactorEnabled = false,
                             UserName = "DistrictManager"
                         },
@@ -141,16 +144,16 @@ namespace Async_Hotel_Inn.Migrations
                         {
                             Id = "PropertyManager-id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bd584703-ccc1-41de-8758-5e387606eddb",
+                            ConcurrencyStamp = "c5323aba-69a8-4ccd-8f41-976a42e209b2",
                             Email = "PROPERTYMANAGER@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "PROPERTYMANAGER@EXAMPLE.COM",
                             NormalizedUserName = "PROPERTYMANAGER",
                             Password = "Password123!",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAo2EEuez0vDN+yX8x0EjjBZMsdAd/mLkudrIAzVygCn9s4czNVJQKgswsTg3RR8ow==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKXHq70H2R9dyzPUTVUX5tEqzoR91fIEGv4kSen11wOQbJ6bG+qosZCYkr+NT9o8xw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b2ad3c9e-f660-487e-a3a7-7c5c77b2e1c3",
+                            SecurityStamp = "2e99aba4-7a43-4fd7-8efd-b29e431135c2",
                             TwoFactorEnabled = false,
                             UserName = "PropertyManager"
                         },
@@ -158,16 +161,16 @@ namespace Async_Hotel_Inn.Migrations
                         {
                             Id = "Agent-id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "431d8743-6a92-4951-97cc-2a7b9313e934",
+                            ConcurrencyStamp = "4fad3747-624c-4fb0-b059-be083f1e5164",
                             Email = "AGENT@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "AGENT@EXAMPLE.COM",
                             NormalizedUserName = "AGENT",
                             Password = "Password123!",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKAWdBB+m0wfBNESPyymo1dADo/+ac2mCZdYcZpccZPXA/HDZPNG/sS2YJD7DyyQaw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKb/HJ1IymBsCBRfWtwVrScBr9ew7+qUEB7l1Fn6cSNzliDSTzVsZhoeX1TlVsFLQg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "65f03ba9-f137-4f1b-9966-64d4cb3841f3",
+                            SecurityStamp = "a39195da-523d-4526-b888-d43cacb3453a",
                             TwoFactorEnabled = false,
                             UserName = "Agent"
                         });
@@ -436,98 +439,98 @@ namespace Async_Hotel_Inn.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1014,
+                            Id = 15,
                             ClaimType = "permissions",
                             ClaimValue = "create",
                             RoleId = "admin"
                         },
                         new
                         {
-                            Id = 1015,
+                            Id = 16,
                             ClaimType = "permissions",
                             ClaimValue = "update",
                             RoleId = "admin"
                         },
                         new
                         {
-                            Id = 1016,
+                            Id = 17,
                             ClaimType = "permissions",
                             ClaimValue = "delete",
                             RoleId = "admin"
                         },
                         new
                         {
-                            Id = 1017,
+                            Id = 18,
                             ClaimType = "permissions",
                             ClaimValue = "read",
                             RoleId = "admin"
                         },
                         new
                         {
-                            Id = 1018,
+                            Id = 19,
                             ClaimType = "permissions",
                             ClaimValue = "create",
                             RoleId = "editor"
                         },
                         new
                         {
-                            Id = 1019,
+                            Id = 20,
                             ClaimType = "permissions",
                             ClaimValue = "update",
                             RoleId = "editor"
                         },
                         new
                         {
-                            Id = 1020,
+                            Id = 21,
                             ClaimType = "permissions",
                             ClaimValue = "create",
                             RoleId = "districtmanager"
                         },
                         new
                         {
-                            Id = 1021,
+                            Id = 22,
                             ClaimType = "permissions",
                             ClaimValue = "update",
                             RoleId = "districtmanager"
                         },
                         new
                         {
-                            Id = 1022,
+                            Id = 23,
                             ClaimType = "permissions",
                             ClaimValue = "delete",
                             RoleId = "districtmanager"
                         },
                         new
                         {
-                            Id = 1023,
+                            Id = 24,
                             ClaimType = "permissions",
                             ClaimValue = "read",
                             RoleId = "districtmanager"
                         },
                         new
                         {
-                            Id = 1024,
+                            Id = 25,
                             ClaimType = "permissions",
                             ClaimValue = "update",
                             RoleId = "propertymanager"
                         },
                         new
                         {
-                            Id = 1025,
+                            Id = 26,
                             ClaimType = "permissions",
                             ClaimValue = "read",
                             RoleId = "propertymanager"
                         },
                         new
                         {
-                            Id = 1026,
+                            Id = 27,
                             ClaimType = "permissions",
                             ClaimValue = "update",
                             RoleId = "agent"
                         },
                         new
                         {
-                            Id = 1027,
+                            Id = 28,
                             ClaimType = "permissions",
                             ClaimValue = "read",
                             RoleId = "agent"

@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Async_Hotel_Inn.Data;
 using Async_Hotel_Inn.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Async_Hotel_Inn.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AmenityController : ControllerBase
     {
         private readonly AsyncInnContext _context;
@@ -34,6 +36,9 @@ namespace Async_Hotel_Inn.Controllers
 
         // GET: api/Amenity/5
         [HttpGet("{id}")]
+
+        [Authorize(Roles = "DistrictManager,PropertyManager,Agent")]
+
         public async Task<ActionResult<Amenity>> GetAmenity(int id)
         {
           if (_context.Amenitites == null)
@@ -53,6 +58,9 @@ namespace Async_Hotel_Inn.Controllers
         // PUT: api/Amenity/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "DistrictManager,PropertyManager")]
+
+
         public async Task<IActionResult> PutAmenity(int id, Amenity amenity)
         {
             if (id != amenity.ID)
@@ -84,6 +92,8 @@ namespace Async_Hotel_Inn.Controllers
         // POST: api/Amenity
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "DistrictManager,PropertyManager")]
+
         public async Task<ActionResult<Amenity>> PostAmenity(Amenity amenity)
         {
           if (_context.Amenitites == null)
@@ -98,6 +108,8 @@ namespace Async_Hotel_Inn.Controllers
 
         // DELETE: api/Amenity/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "DistrictManager")]
+
         public async Task<IActionResult> DeleteAmenity(int id)
         {
             if (_context.Amenitites == null)

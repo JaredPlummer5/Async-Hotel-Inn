@@ -4,6 +4,7 @@ using Async_Hotel_Inn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Async_Hotel_Inn.Migrations
 {
     [DbContext(typeof(AsyncInnContext))]
-    partial class AsyncInnContextModelSnapshot : ModelSnapshot
+    [Migration("20230822204002_oldAddingRoles2")]
+    partial class oldAddingRoles2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,16 +127,16 @@ namespace Async_Hotel_Inn.Migrations
                         {
                             Id = "DistrictManager-id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "beaf5803-db04-487b-b0aa-97a1e4f6961f",
+                            ConcurrencyStamp = "bcf82ca9-d6d9-42ed-9094-f95007f35141",
                             Email = "DISTRICTMANAGER@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "DISTRICTMANAGER@EXAMPLE.COM",
                             NormalizedUserName = "DISTRICTMANAGER",
                             Password = "Password123!",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHLN7sAtWgvdCU3WPDxwOYnlO4R7Gj2uRm7M2Mv/9HQauPbIc6HwEnHu7TDdjvsdmg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPHR1YXzx5vKP8Hd6m18iFZCwxcySY/8HxpsiK7eVx8ajVleWvxePMVf8242XApwFg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "04bf662e-fc4e-451a-9e41-9890ac8dc377",
+                            SecurityStamp = "df088c57-196b-4ab2-a6f4-9b6de755a2bf",
                             TwoFactorEnabled = false,
                             UserName = "DistrictManager"
                         },
@@ -141,16 +144,16 @@ namespace Async_Hotel_Inn.Migrations
                         {
                             Id = "PropertyManager-id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bd584703-ccc1-41de-8758-5e387606eddb",
+                            ConcurrencyStamp = "2441f0f4-9d28-4f18-bfad-61d466ebf68a",
                             Email = "PROPERTYMANAGER@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "PROPERTYMANAGER@EXAMPLE.COM",
                             NormalizedUserName = "PROPERTYMANAGER",
                             Password = "Password123!",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAo2EEuez0vDN+yX8x0EjjBZMsdAd/mLkudrIAzVygCn9s4czNVJQKgswsTg3RR8ow==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHkYETVfX3WQEYBMJanLRDKgRyHLhLCuUgSz/lkqCHsc+Pbq4bJ+vS1MS0wCzV8uqA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b2ad3c9e-f660-487e-a3a7-7c5c77b2e1c3",
+                            SecurityStamp = "49e12d1a-9a66-44ef-8e92-374cfc3a151f",
                             TwoFactorEnabled = false,
                             UserName = "PropertyManager"
                         },
@@ -158,16 +161,16 @@ namespace Async_Hotel_Inn.Migrations
                         {
                             Id = "Agent-id",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "431d8743-6a92-4951-97cc-2a7b9313e934",
+                            ConcurrencyStamp = "355a57fe-cb85-4f6a-97d0-0454943e3793",
                             Email = "AGENT@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "AGENT@EXAMPLE.COM",
                             NormalizedUserName = "AGENT",
                             Password = "Password123!",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKAWdBB+m0wfBNESPyymo1dADo/+ac2mCZdYcZpccZPXA/HDZPNG/sS2YJD7DyyQaw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOGGgIm+dv8e5pFysOdbNFrTb6nNFZYFi9sQArJZrrKwVm+nENGWLTuTUpb2HJDcaw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "65f03ba9-f137-4f1b-9966-64d4cb3841f3",
+                            SecurityStamp = "c9f01687-055a-49e5-8a31-7d0680ec54c0",
                             TwoFactorEnabled = false,
                             UserName = "Agent"
                         });
